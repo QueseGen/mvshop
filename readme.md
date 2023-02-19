@@ -1,0 +1,1 @@
+Add jar of project to snapshots however, shouldn't run correctly when db not connected.
