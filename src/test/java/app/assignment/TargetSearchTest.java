@@ -37,7 +37,7 @@ public class TargetSearchTest {
     searchBox.sendKeys("iphone");
 
     // Click on the search button
-    WebElement searchButton = driver.findElement(By.className("styles__MobileSearchWrapper-sc-1r0wkfu-0 jOTdQX"));
+    WebElement searchButton = driver.findElement(By.xpath("//button[@label=\"Search\"]"));
     searchButton.click();
 
     // Get all the products on page 1 and print their description and price
