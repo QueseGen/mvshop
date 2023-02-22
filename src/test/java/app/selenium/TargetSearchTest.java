@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,11 +20,15 @@ import java.util.stream.Collectors;
 
 public class TargetSearchTest {
   private static final String WEB_DRIVER="driver.Class.forName";
-  private static final WebDriver driver = new ChromeDriver();
+
   private static FileWriter writer=null;
-  private static final JavascriptExecutor jsx = (JavascriptExecutor)driver;
 
   public static void main(String[] args) throws IOException, InterruptedException {
+
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("headless");
+    WebDriver driver = new ChromeDriver(options);
+    JavascriptExecutor jsx = (JavascriptExecutor)driver;
 
     driver.get("https://www.target.com/");
     driver.manage().window().fullscreen();
@@ -44,7 +49,7 @@ public class TargetSearchTest {
       List<WebElement> Allproducts = new ArrayList<>();
       for (int i = 0; i <5 ; i++) {
         //works sometimes all items don't load
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Allproducts.addAll(driver.findElements(By.cssSelector("div[class='styles__StyledDetailsWrapper-sc-1iglypx-1 bgKEdY']")));
         jsx.executeScript("window.scrollBy(0,1400);");
         TimeUnit.SECONDS.sleep(10);
