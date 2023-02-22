@@ -43,6 +43,7 @@ public class TargetSearchTest {
       writer = new FileWriter("src/test/resources/target_products.txt");
       List<WebElement> Allproducts = new ArrayList<>();
       for (int i = 0; i <5 ; i++) {
+        //works sometimes all items don't load
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         Allproducts.addAll(driver.findElements(By.cssSelector("div[class='styles__StyledDetailsWrapper-sc-1iglypx-1 bgKEdY']")));
         jsx.executeScript("window.scrollBy(0,1400);");
