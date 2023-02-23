@@ -33,7 +33,7 @@ public class TargetSearchTest {
     driver.get("https://www.target.com/");
     driver.manage().window().fullscreen();
 
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     WebElement searchBox = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("searchTerm")));
     searchBox.sendKeys("iphone");
     TimeUnit.SECONDS.sleep(5);
@@ -41,18 +41,16 @@ public class TargetSearchTest {
     JavascriptExecutor j = (JavascriptExecutor)driver;
     if (j.executeScript("return document.readyState").toString().equals("complete")){
       System.out.println("Page has loaded");
-    } //Not valid
+    }
 
-    List<WebElement> products=null;
     try {
       writer = new FileWriter("src/test/resources/target_products.txt");
       List<WebElement> Allproducts = new ArrayList<>();
       for (int i = 0; i <5 ; i++) {
-        //works sometimes all items don't load
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Allproducts.addAll(driver.findElements(By.cssSelector("div[class='styles__StyledDetailsWrapper-sc-1iglypx-1 bgKEdY']")));
         jsx.executeScript("window.scrollBy(0,1400);");
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(6);
       }
       Allproducts=Allproducts.stream().distinct().collect(Collectors.toList());
       System.out.println(Allproducts.size());
