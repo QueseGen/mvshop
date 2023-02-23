@@ -31,7 +31,7 @@ public class DBConnectionTest {
   public static Connection getConnection(){
     return connection;
   }
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException {
     System.out.println("Here");
     try {
       Connection connection = getConnection();
@@ -41,6 +41,8 @@ public class DBConnectionTest {
     } catch (Exception e) {
       System.out.println(e.getMessage());
       e.printStackTrace();
+    } finally {
+      if (!connection.isClosed()){connection.close();}
     }
 
   }
