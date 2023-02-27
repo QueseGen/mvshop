@@ -1,5 +1,7 @@
 package app.selenium;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
+import static app.AutoTest.getTimeStamp;
 
 public class TestTarget {
 
@@ -30,21 +32,28 @@ public class TestTarget {
   }
 
   @Test
-  public void testAdd() {
-    int result = 2;
-    System.out.println("Add results are = " + result);
-    assertEquals(2, result);
+  public void testSearchPreLoad() {
+    ChromeOptions options = new ChromeOptions();
+    WebDriverManager.chromedriver().setup();
+    options.addArguments("headless");
+    WebDriver driver = new ChromeDriver(options);
+    JavascriptExecutor jsx = (JavascriptExecutor)driver;
+    driver.manage().window().fullscreen();
+    driver.navigate().to("https://www.target.com/");
 
+    driver.findElement(By.name("searchTerm")).click();
+    Assert.assertTrue(driver.findElement(By.name("searchTerm")).isSelected());
   }
+
   public static void main(String[] args) throws IOException, InterruptedException {
 
     ChromeOptions options = new ChromeOptions();
     options.addArguments("headless");
+    WebDriverManager.chromedriver().setup();
     WebDriver driver = new ChromeDriver(options);
     JavascriptExecutor jsx = (JavascriptExecutor)driver;
-
-    driver.get("https://www.target.com/");
     driver.manage().window().fullscreen();
+    driver.get("https://www.target.com/");
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     WebElement searchBox = wait.until(ExpectedConditions.presenceOfElementLocated(By.name("searchTerm")));
@@ -71,6 +80,7 @@ public class TestTarget {
        String title= product.findElement(By.cssSelector("div[class='Truncate-sc-10p6c43-0 flAIvs']")).getAttribute("title");
        String price=product.findElement(By.cssSelector("div[class='styles__ProductCardPriceAndPromoStyled-sc-1p9w55v-0 hikmng']")).findElement(By.cssSelector("div[class='styles__PriceStandardLineHeight-sc-m1iu3h-0 jqDsCz']")).findElement(By.cssSelector("div[class='h-padding-r-tiny']")).findElement(By.cssSelector("span[data-test='current-price']")).getText();
        System.out.println(title+"\t"+ price);
+       writer.write(getTimeStamp()+"\n");
        writer.write(title+"\t"+ price+"\n");
       }
       }catch (Exception e){
