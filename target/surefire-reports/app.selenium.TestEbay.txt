@@ -1,8 +1,14 @@
 -------------------------------------------------------------------------------
 Test set: app.selenium.TestEbay
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 258.059 s <<< FAILURE! - in app.selenium.TestEbay
-testWhetherWebManagerisFaster  Time elapsed: 206.958 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Bonigarcia's WebdriverManager at 102891ms can connect and crawl data from Ebay.com faster than Google's ChromeDriver.exe(ver 110) at101257ms. ==> expected: <true> but was: <false>
-	at app.selenium.TestEbay.testWhetherWebManagerisFaster(TestEbay.java:94)
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 81.177 s <<< FAILURE! - in app.selenium.TestEbay
+app.selenium.TestEbay  Time elapsed: 81.158 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: 
+expected: <null> but was: <org.openqa.selenium.SessionNotCreatedException: Could not start a new session. Response code 500. Message: unknown error: unable to discover open pages 
+Host info: host: 'Jodye.local', ip: 'fe80:0:0:0:1441:60a1:c25a:c0f3%en0'
+Build info: version: '4.5.3', revision: '4b786a1e430'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '12.6.3', java.version: '19.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [null, newSession {capabilities=[Capabilities {browserName: chrome, goog:chromeOptions: {args: [headless, browserName, chrome, webdriver.remote.session.ca..., newSession, webdriver.remote.session.te..., newSession], extensions: []}}], desiredCapabilities=Capabilities {browserName: chrome, goog:chromeOptions: {args: [headless, browserName, chrome, webdriver.remote.session.ca..., newSession, webdriver.remote.session.te..., newSession], extensions: []}}}]>
+	at app.selenium.TestEbay.testConnectionwithWebManager(TestEbay.java:68)
 
