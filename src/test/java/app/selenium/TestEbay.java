@@ -1,20 +1,26 @@
 package app.selenium;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
 import static app.AutoTest.getTimeStamp;
 import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestEbay {
   private static WebDriver driver = null;
@@ -30,16 +36,37 @@ public class TestEbay {
     return props.getProperty(WD_DRIVER);
   }
 
-  @Before()
-  public void testConnection() {
+  static WebDriver getChromeDriver(){
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("headless");
+    options.addArguments(CapabilityType.BROWSER_NAME, "chrome");
+    options.addArguments("webdriver.remote.session.capability-match", "newSession");
+    options.addArguments("webdriver.remote.session.technology-preview", "newSession");
+
+    return new ChromeDriver(options);
+  }
+
+  @BeforeAll
+  public static void testConnectionwithChromeDrive() {
     try {
       System.setProperty("webdriver.chrome.driver", getWdDriver());
-      ChromeOptions options = new ChromeOptions();
-      options.addArguments("headless");
-      WebDriver driver = new ChromeDriver(options);
+      WebDriver driver = getChromeDriver();
       driver.get("https://www.ebay.com/");
     } catch (Exception e){
       assertNull(e);
+      System.out.println("ChromeDriver is hidden in Repo. | " + e.getMessage());
+    } finally{
+      if (driver !=null){driver.quit();}}
+  }
+  @BeforeAll
+  public static void testConnectionwithWebManager() {
+    try {
+      WebDriverManager.chromedriver().setup();
+      WebDriver driver = getChromeDriver();
+      driver.get("https://www.ebay.com/");
+    } catch (Exception e){
+      Assertions.assertNull(e);
+      System.out.println("pom.xml is hidden in Repo. | " + e.getMessage());
     } finally{
       if (driver !=null){driver.quit();}}
   }
@@ -55,7 +82,7 @@ public class TestEbay {
     System.out.printf("Execution time with Web Manager: %dms |\t %d minutes %.2f seconds\n", webManagerExecutionTime, minutes, seconds);
 
     startTime = System.currentTimeMillis();
-    testWithPhysicalDriver();
+    testWithChromeDriver();
     endTime = System.currentTimeMillis();
     long physicalDriverExecutionTime = endTime - startTime;
     seconds = (float)(physicalDriverExecutionTime / 1000) % 60;
@@ -64,17 +91,14 @@ public class TestEbay {
 
     System.out.println("That's a difference of " + (physicalDriverExecutionTime-webManagerExecutionTime) + "ms");
 
-    assert webManagerExecutionTime<physicalDriverExecutionTime;
+    assertTrue(physicalDriverExecutionTime > webManagerExecutionTime, "Bonigarcia's WebdriverManager at "+ webManagerExecutionTime +"ms can connect and crawl data from Ebay.com faster than Google's ChromeDriver.exe(ver 110) at"+ physicalDriverExecutionTime +"ms.");
   }
   public void testWithWebManager() throws IOException{
     FileWriter writer=null;
     try{
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = getChromeDriver();
         driver.get("https://www.ebay.com/");
-
         WebElement searchBox = driver.findElement(By.id("gh-ac"));
         searchBox.sendKeys("iphone");
 
@@ -98,13 +122,13 @@ public class TestEbay {
     }
   }
 
-  public void testWithPhysicalDriver() throws IOException{
+  public void testWithChromeDriver() throws IOException{
     FileWriter writer=null;
     try{
+
       System.setProperty("webdriver.chrome.driver", getWdDriver());
-      ChromeOptions options = new ChromeOptions();
-      options.addArguments("headless");
-      WebDriver driver = new ChromeDriver(options);
+
+      WebDriver driver = getChromeDriver();
       driver.get("https://www.ebay.com/");
 
       WebElement searchBox = driver.findElement(By.id("gh-ac"));

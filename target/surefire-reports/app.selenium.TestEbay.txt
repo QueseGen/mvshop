@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: app.selenium.TestEbay
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 258.059 s <<< FAILURE! - in app.selenium.TestEbay
+testWhetherWebManagerisFaster  Time elapsed: 206.958 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Bonigarcia's WebdriverManager at 102891ms can connect and crawl data from Ebay.com faster than Google's ChromeDriver.exe(ver 110) at101257ms. ==> expected: <true> but was: <false>
+	at app.selenium.TestEbay.testWhetherWebManagerisFaster(TestEbay.java:94)
+
