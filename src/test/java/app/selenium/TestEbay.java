@@ -1,7 +1,6 @@
 package app.selenium;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.RepeatedTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -44,31 +43,26 @@ public class TestEbay {
     return new ChromeDriver(options);
   }
 
-  @BeforeAll
+ // @BeforeAll
   public static void testConnectionwithChromeDrive() {
     try {
       System.setProperty("webdriver.chrome.driver", getWdDriver());
       WebDriver driver = getChromeDriver();
       driver.get("https://www.ebay.com/");
     } catch (Exception e){
-      //assertNull(e);
+      //Assertions.//Assertions.assertNull(e);
       System.out.println("ChromeDriver is hidden in Repo. | " + e.getMessage());
-    } finally{
-      if (driver !=null){driver.quit();}}
-  }
-  @BeforeAll
+    } }
+
   public static void testConnectionwithWebManager() {
     try {
       WebDriverManager.chromedriver().setup();
       WebDriver driver = getChromeDriver();
       driver.get("https://www.ebay.com/");
     } catch (Exception e){
-      //Assertions.assertNull(e);
-      System.out.println("pom.xml is hidden in Repo. | " + e.getMessage());
-    } finally{
-      if (driver !=null){driver.quit();}}
-  }
-
+      ////Assertions.//Assertions.//Assertions.assertNull(e);
+      System.out.println("pom.xml is hidden in Repo. | " + e.getMessage());}
+    }
   @RepeatedTest(5)
   public void testWhetherWebManagerisFaster() throws IOException {
     long startTime = System.currentTimeMillis();
