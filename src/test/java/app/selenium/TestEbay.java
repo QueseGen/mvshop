@@ -20,7 +20,9 @@ import static app.AutoTest.getTimeStamp;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestEbay {
-  private static WebDriver driver = null;
+  private static final WebDriver driver = null;
+  private static final File file = new File("src/test/resources/ebay-products.txt");
+
   private static final String WD_DRIVER="wd.Class.forName";
   static String getWdDriver(){
     Properties props = new Properties();
@@ -63,7 +65,7 @@ public class TestEbay {
       ////Assertions.//Assertions.//Assertions.assertNull(e);
       System.out.println("pom.xml is hidden in Repo. | " + e.getMessage());}
     }
-  @RepeatedTest(5)
+  @RepeatedTest(10)
   public void testWhetherWebManagerisFaster() throws IOException {
     long startTime = System.currentTimeMillis();
     testWithWebManager();
@@ -98,13 +100,12 @@ public class TestEbay {
 
     List<WebElement> products = driver.findElements(By.cssSelector(".s-item"));
 
-     File file = new File("src/test/resources/ebay-products.txt");
      writer = new FileWriter(file);
+     writer.write("---------------------WDM Test: "+getTimeStamp()+"\n");
 
     for (WebElement product : products) {
       String description = product.findElement(By.cssSelector(".s-item__title")).getText();
       String price = product.findElement(By.cssSelector(".s-item__price")).getText();
-      writer.write(getTimeStamp()+"\n");
       writer.write(description + " - " + price + "\n");
     }} catch (Exception e){e.printStackTrace();}
     finally {
@@ -130,13 +131,11 @@ public class TestEbay {
 
       List<WebElement> products = driver.findElements(By.cssSelector(".s-item"));
 
-      File file = new File("src/test/resources/ebay-products.txt");
       writer = new FileWriter(file);
-
+      writer.write("---------------------CD Test: "+getTimeStamp()+"\n");
       for (WebElement product : products) {
         String description = product.findElement(By.cssSelector(".s-item__title")).getText();
         String price = product.findElement(By.cssSelector(".s-item__price")).getText();
-        writer.write(getTimeStamp()+"\n");
         writer.write(description + " - " + price + "\n");
       }} catch (Exception e){e.printStackTrace();}
     finally {

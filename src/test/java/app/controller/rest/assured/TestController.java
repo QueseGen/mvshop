@@ -1,4 +1,5 @@
-package app.controller;
+package app.controller.rest.assured;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,5 +10,8 @@ public class TestController {
   @GetMapping("/")
   public String hello(){
     return "Hello World";
+  }
+
+  public static void main(String[] args) {
   }
 }

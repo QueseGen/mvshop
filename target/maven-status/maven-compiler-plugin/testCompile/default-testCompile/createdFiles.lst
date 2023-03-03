@@ -1,6 +1,6 @@
 app/DBConnectionTest.class
 app/selenium/TestEbay.class
+app/controller/rest/assured/TestController.class
 app/selenium/TestTarget.class
 app/TestApplication.class
-app/controller/TestController.class
 app/AutoTest.class
