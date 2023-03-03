@@ -1,4 +1,4 @@
-package app.selenium.POM.aspiration;
+package app.selenium.POM.Aspiration;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static app.selenium.POM.aspiration.TestConnection.getChromeDriver;
+import static app.selenium.POM.Aspiration.TestConnection.getChromeDriver;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class RegistrationPage {
+public class RegistrationTest {
     String PageUrl = "https://my.aspiration.com/auth/login/";
 
     //Phase1 Verify Registration Elements
@@ -21,7 +21,7 @@ public class RegistrationPage {
     //Phase2 Verify Confirmation Elements
     By MessageText = By.cssSelector("h4[class='modal-title ng-binding']");
     By MessageButton = By.cssSelector("button[class='btn-sapling btn--solid btn--block btn-sapling btn--solid']");
-
+    
     @Test
     public void TestifPhase1ElementsPresent() {
         List<By> Elements = List.of(new By[]{RegLink, EmailBox, SubmitButton});

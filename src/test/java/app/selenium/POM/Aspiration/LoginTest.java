@@ -1,4 +1,4 @@
-package app.selenium.POM.aspiration;
+package app.selenium.POM.Aspiration;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -7,10 +7,10 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-import static app.selenium.POM.aspiration.TestConnection.getChromeDriver;
+import static app.selenium.POM.Aspiration.TestConnection.getChromeDriver;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class LoginPage {
+public class LoginTest {
 
     WebDriver driver;
     //Phase1

@@ -1,4 +1,4 @@
-package app.selenium.POM.aspiration;
+package app.selenium.POM.Aspiration;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
