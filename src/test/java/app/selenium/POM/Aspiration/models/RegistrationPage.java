@@ -1,4 +1,4 @@
-package app.selenium.POM.Aspiration;
+package app.selenium.POM.Aspiration.models;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
