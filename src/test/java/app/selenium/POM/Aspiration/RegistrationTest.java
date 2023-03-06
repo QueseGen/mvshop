@@ -31,6 +31,26 @@ public class RegistrationTest {
             for (By element : Elements) { WebElement Cleared = driver.findElement(element);}});
     }
 
+  @Test
+  public void IsSubmitButtonClickable()  {
+    assertDoesNotThrow(() -> {
+      WebDriver driver = getChromeDriver();
+      driver.get(PageUrl);
+        WebElement Cleared = driver.findElement(SubmitButton);
+        Cleared.click();
+      });
+  }
+
+  @Test
+  public void IsSubmitButtonSubmittable()  {
+    assertDoesNotThrow(() -> {
+      WebDriver driver = getChromeDriver();
+      driver.get(PageUrl);
+      WebElement Cleared = driver.findElement(SubmitButton);
+      Cleared.submit();
+    });
+  }
+
     @Test
     public void TestifPhase2ElementsPresent() {
         List<By> Elements = List.of(new By[]{MessageText, MessageButton});

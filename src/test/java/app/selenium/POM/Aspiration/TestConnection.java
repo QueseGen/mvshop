@@ -13,6 +13,7 @@ public class TestConnection {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("headless");
     options.addArguments(CapabilityType.BROWSER_NAME, "chrome");
+    options.addArguments("--window-size=1920,1080");
     options.addArguments("webdriver.remote.session.capability-match", "newSession");
     options.addArguments("webdriver.remote.session.technology-preview", "newSession");
 

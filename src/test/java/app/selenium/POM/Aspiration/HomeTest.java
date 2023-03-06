@@ -6,10 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 
 import static app.selenium.POM.Aspiration.TestConnection.getChromeDriver;
@@ -42,10 +39,11 @@ public class HomeTest {
     assertDoesNotThrow(() -> {
       WebDriver driver = getChromeDriver();
       driver.manage().window().maximize();
-      driver.get(PageUrl);
       for (By element : Elements) {
+        driver.get(PageUrl);
         WebElement Cleared = driver.findElement(element);
-        new WebDriverWait(driver, Duration.ofSeconds(300)).until(ExpectedConditions.elementToBeClickable(Cleared)).click();
+        Cleared.click();
+        //new WebDriverWait(driver, Duration.ofSeconds(300)).until(ExpectedConditions.elementToBeClickable(Cleared)).click();
         //Actions actions = new Actions(driver);
         //actions.moveToElement(element).click().build().perform();
       }});

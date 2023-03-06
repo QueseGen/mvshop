@@ -38,7 +38,7 @@ public class RegistrationPage {
         return SubmitButton;
     }
     public void clickSubmitButton() {
-        SubmitButton.click();
+        SubmitButton.submit();
     }
     public WebElement getMessageText() {
         return MessageText;

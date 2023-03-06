@@ -4,10 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class HomePage {
   private final WebDriver driver;
@@ -23,18 +19,14 @@ public class HomePage {
     return EnterpriseButton;
   }
   public void clickEnterpriseButton() {
-    while(!EnterpriseButton.isDisplayed() && !EnterpriseButton.isEnabled()){
-      System.out.print("Buffer.....");
+    String url =EnterpriseButton.getAttribute("href");
+    driver.get(url);
     }
-    new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(EnterpriseButton)).click();
-  }
   public WebElement getPersonalButton() {
     return PersonalButton;
   }
   public void clickPersonalButton() {
-    while(!PersonalButton.isDisplayed() && !PersonalButton.isEnabled()){
-      System.out.print("Buffer.....");
-    }
-    new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.elementToBeClickable(PersonalButton)).click();
+    String url =PersonalButton.getAttribute("href");
+    driver.get(url);
   }
 }

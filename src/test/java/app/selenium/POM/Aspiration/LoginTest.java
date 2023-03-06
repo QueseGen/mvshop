@@ -48,6 +48,15 @@ public class LoginTest {
       for (By element : Elements) { WebElement Cleared = driver.findElement(element);}});
   }
   @Test
+  public void IsLoginButtonClickable()  {
+    assertDoesNotThrow(() -> {
+      WebDriver driver = getChromeDriver();
+      driver.get(PageUrl);
+      WebElement Cleared = driver.findElement(LoginButton);
+      Cleared.click();
+    });
+  }
+  @Test
   public void CanLoginNout() throws InterruptedException {
     WebDriver driver = getChromeDriver();
     driver.get(PageUrl);
