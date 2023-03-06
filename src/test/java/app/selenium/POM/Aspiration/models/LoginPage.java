@@ -11,13 +11,13 @@ import java.time.Duration;
 
 public class LoginPage {
 
-    WebDriver driver;
+    private final WebDriver driver;
     @FindBy(css = "input[id='signinEmail']")
-    WebElement EmailBox;
+    private WebElement EmailBox;
     @FindBy(css="input[id='signinPassword']")
-    WebElement PasswordBox;
+    private WebElement PasswordBox;
     @FindBy(css = "button[id][type='submit']" )
-    WebElement LoginButton;
+    private WebElement LoginButton;
     public LoginPage(WebDriver d){
         driver=d;
         PageFactory.initElements(d, this);

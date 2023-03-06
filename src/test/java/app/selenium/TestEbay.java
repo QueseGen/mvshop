@@ -20,7 +20,7 @@ import static app.AutoTest.getTimeStamp;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestEbay {
-  private static final WebDriver driver = null;
+  private WebDriver driver;
   private static final File file = new File("src/test/resources/ebay-products.txt");
 
   private static final String WD_DRIVER="wd.Class.forName";
@@ -52,7 +52,6 @@ public class TestEbay {
       WebDriver driver = getChromeDriver();
       driver.get("https://www.ebay.com/");
     } catch (Exception e){
-      //Assertions.//Assertions.assertNull(e);
       System.out.println("ChromeDriver is hidden in Repo. | " + e.getMessage());
     } }
 
@@ -62,7 +61,6 @@ public class TestEbay {
       WebDriver driver = getChromeDriver();
       driver.get("https://www.ebay.com/");
     } catch (Exception e){
-      ////Assertions.//Assertions.//Assertions.assertNull(e);
       System.out.println("pom.xml is hidden in Repo. | " + e.getMessage());}
     }
   @RepeatedTest(10)
@@ -90,7 +88,7 @@ public class TestEbay {
     FileWriter writer=null;
     try{
         WebDriverManager.chromedriver().setup();
-        WebDriver driver = getChromeDriver();
+        driver = getChromeDriver();
         driver.get("https://www.ebay.com/");
         WebElement searchBox = driver.findElement(By.id("gh-ac"));
         searchBox.sendKeys("iphone");
@@ -120,7 +118,7 @@ public class TestEbay {
 
       System.setProperty("webdriver.chrome.driver", getWdDriver());
 
-      WebDriver driver = getChromeDriver();
+      driver = getChromeDriver();
       driver.get("https://www.ebay.com/");
 
       WebElement searchBox = driver.findElement(By.id("gh-ac"));

@@ -6,20 +6,21 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class RegistrationPage {
-    WebDriver driver;
-    @FindBy(css = "a[href][ng-click='$root.signup()']")
-    WebElement RegLink;
+
+  private final WebDriver driver;
+  @FindBy(css = "a[href][ng-click='$root.signup()']")
+    private WebElement RegLink;
     @FindBy(css = "input[type='email']")
-    WebElement EmailBox;
+    private WebElement EmailBox;
     @FindBy(css ="button[type='submit']")
-    WebElement SubmitButton;
+    private WebElement SubmitButton;
     @FindBy(css ="h4[class='modal-title ng-binding']")
-    WebElement MessageText;
+    private WebElement MessageText;
     @FindBy(css = "button[class='btn-sapling btn--solid btn--block btn-sapling btn--solid']")
-    WebElement MessageButton;
-    RegistrationPage(WebDriver d){
-        driver=d;
-        PageFactory.initElements(d, this);
+    private WebElement MessageButton;
+    public RegistrationPage(WebDriver d){
+      driver=d;
+      PageFactory.initElements(driver, this);
     }
     public WebElement getRegLink() {
         return RegLink;

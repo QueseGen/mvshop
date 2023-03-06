@@ -11,7 +11,7 @@ import static app.selenium.POM.Aspiration.TestConnection.getChromeDriver;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class RegistrationTest {
-    String PageUrl = "https://my.aspiration.com/auth/login/";
+    private final String PageUrl = "https://my.aspiration.com/auth/login/";
 
     //Phase1 Verify Registration Elements
     By RegLink = By.cssSelector("a[href][ng-click='$root.signup()']");

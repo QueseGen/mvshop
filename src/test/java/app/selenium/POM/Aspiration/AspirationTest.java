@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 import static app.selenium.POM.Aspiration.TestConnection.getChromeDriver;
 
 public class AspirationTest {
-    static List<String> getCredentials(){
+    static private List<String> getCredentials(){
         List<String> cred = new ArrayList<>();
 
         try {
