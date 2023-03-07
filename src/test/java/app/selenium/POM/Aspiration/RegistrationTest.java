@@ -21,8 +21,7 @@ public class RegistrationTest {
     //Phase2 Verify Confirmation Elements
     By MessageText = By.cssSelector("h4[class='modal-title ng-binding']");
     By MessageButton = By.cssSelector("button[class='btn-sapling btn--solid btn--block btn-sapling btn--solid']");
-    
-    @Test
+@Test
     public void TestifPhase1ElementsPresent() {
         List<By> Elements = List.of(new By[]{RegLink, EmailBox, SubmitButton});
         assertDoesNotThrow(() -> {
@@ -40,7 +39,6 @@ public class RegistrationTest {
         Cleared.click();
       });
   }
-
   @Test
   public void IsSubmitButtonSubmittable()  {
     assertDoesNotThrow(() -> {
@@ -50,9 +48,8 @@ public class RegistrationTest {
       Cleared.submit();
     });
   }
-
-    @Test
-    public void TestifPhase2ElementsPresent() {
+  @Test
+  public void TestifPhase2ElementsPresent() {
         List<By> Elements = List.of(new By[]{MessageText, MessageButton});
         assertDoesNotThrow(() -> {
             WebDriver driver = getChromeDriver();

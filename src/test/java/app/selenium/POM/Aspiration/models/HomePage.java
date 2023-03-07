@@ -26,7 +26,8 @@ public class HomePage {
     return PersonalButton;
   }
   public void clickPersonalButton() {
-    String url =PersonalButton.getAttribute("href");
-    driver.get(url);
+    //String url =PersonalButton.getAttribute("href");
+   //driver.get(url);
+    PersonalButton.click();
   }
 }
