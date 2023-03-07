@@ -8,6 +8,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Objects;
 
 import static app.selenium.POM.Aspiration.TestConnection.getChromeDriver;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -28,7 +29,9 @@ public class HomeTest {
     By PerkDescription=By.cssSelector("div[class='Flex-sc-1kj10zc-0 laSLjt']");
     By NormalPerk=By.cssSelector("div[class='Flex-sc-1kj10zc-0 ckGXCh']");
     By PlusPerk=By.cssSelector("div[class='Flex-sc-1kj10zc-0 jceVYu']");
-  By Image=By.tagName("image");
+  By Imaget=By.tagName("img");
+  By Image=By.cssSelector("img[src]");
+
 
   @Test
   public void TestifPhase1ElementsPresent() {
@@ -84,26 +87,34 @@ public class HomeTest {
   public void HowManyPerksOnPersonalPage(){
     assertDoesNotThrow(() ->{
       WebDriver driver = getChromeDriver();
+      driver.manage().deleteAllCookies();
       driver.get(PageUrl);
       WebElement Cleared = driver.findElement(IndividualButton);
       String url =Cleared.getAttribute("href");
       System.out.println(url);
       driver.get(url);
 
-      List<WebElement> Perks = driver.findElements(PerkRows);
-      System.out.println(Perks.size());
-      int count=0;
-      for (WebElement perk: Perks) {
-        System.out.println("\nRow: "+ (count=count+1));
-        System.out.println(perk.findElement(PerkDescription).getText());
-        if (perk.findElement(NormalPerk).findElement(By.tagName("p"))!=null){System.out.print(perk.findElement(NormalPerk).findElement(By.tagName("p")).getText()+"\t");}
-        if (perk.findElement(PlusPerk).findElement(By.tagName("p"))!=null){System.out.print(perk.findElement(PlusPerk).findElement(By.tagName("p")).getText()+"\t");}
+        List<WebElement> Perks = driver.findElements(PerkRows);
+        System.out.println(Perks.size());
+        int count=0;
+        for (WebElement perk: Perks) {
+          List<WebElement> Normal, Plus;
+          WebElement Description=perk.findElement(PerkDescription);
+          Normal=perk.findElement(NormalPerk).findElements(By.xpath("./*"));
+          Plus=perk.findElement(PlusPerk).findElements(By.xpath("./*"));
 
-        if (perk.findElement(NormalPerk).findElements(Image).size()<=1){System.out.println(perk.findElement(NormalPerk).findElement(Image).getSize());}
-        if (perk.findElement(PlusPerk).findElements(Image).size()<=1){System.out.println(perk.findElement(PlusPerk).findElement(Image).getSize());}
+          System.out.println("\nRow: "+ (count=count+1));
+          System.out.println(Description.getText());
 
+          if(Normal.isEmpty()){System.out.print("false\t");
+            }else if (Objects.equals(Normal.get(0).getTagName(),"img")){ System.out.print(Normal.get(0).isEnabled()+"\t");
+          } else if(Objects.equals(Normal.get(0).getTagName(),"p")){System.out.println(Normal.get(0).getText()+"\t");
+          } else{System.out.println("\" \"\t");}
 
-      }
+          if(Plus.isEmpty()){System.out.println("false");
+              } else if (Objects.equals(Plus.get(0).getTagName(),"img")){ System.out.println(Plus.get(0).isEnabled());
+              } else if(Objects.equals(Plus.get(0).getTagName(),"p")){System.out.println(Plus.get(0).getText());
+              } else{System.out.println("\" \"");}}
     });
   }
   @Test

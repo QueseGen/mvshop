@@ -16,6 +16,8 @@ public class TestConnection {
     options.addArguments("--window-size=1920,1080");
     options.addArguments("webdriver.remote.session.capability-match", "newSession");
     options.addArguments("webdriver.remote.session.technology-preview", "newSession");
+    options.addArguments("disable-infobars");
+    options.addArguments("--disable-extensions");
 
     return new ChromeDriver(options);
   }
