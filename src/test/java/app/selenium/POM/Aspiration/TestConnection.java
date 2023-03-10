@@ -14,8 +14,11 @@ public class TestConnection {
     options.addArguments("headless");
     options.addArguments(CapabilityType.BROWSER_NAME, "chrome");
     options.addArguments("--window-size=1920,1080");
+    options.addArguments("--remote-allow-origins=*");
     options.addArguments("webdriver.remote.session.capability-match", "newSession");
     options.addArguments("webdriver.remote.session.technology-preview", "newSession");
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
     options.addArguments("disable-infobars");
     options.addArguments("--disable-extensions");
 

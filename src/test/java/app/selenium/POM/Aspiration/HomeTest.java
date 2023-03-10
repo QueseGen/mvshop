@@ -122,7 +122,6 @@ public class HomeTest {
     List<By> Elements = List.of(new By[]{BusinessButton, IndividualButton});
     assertDoesNotThrow(() ->{
       WebDriver driver = getChromeDriver();
-      driver.manage().window().maximize();
       for (By element : Elements) {
         driver.get(PageUrl);
         WebElement Cleared = driver.findElement(element);
