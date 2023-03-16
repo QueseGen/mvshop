@@ -9,18 +9,20 @@ import org.openqa.selenium.remote.CapabilityType;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class TestConnection {
-  static WebDriver getChromeDriver(){
+  public static WebDriver getChromeDriver(){
+
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("headless");
     options.addArguments(CapabilityType.BROWSER_NAME, "chrome");
-    options.addArguments("--window-size=1920,1080");
+    options.addArguments( "--headless");
+    options.addArguments("--start-maximized");
+    options.addArguments( "--window-size=2560,1440");
+    options.addArguments( "--ignore-certificate-errors");
+    options.addArguments("--disable-extensions","--disable-dev-shm-usage","--disable-infobars");
+    options.addArguments("--log-level=3");
     options.addArguments("--remote-allow-origins=*");
     options.addArguments("webdriver.remote.session.capability-match", "newSession");
-    options.addArguments("webdriver.remote.session.technology-preview", "newSession");
+    options.addArguments("webdriver.remote.session.technology-preview");
     options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
-    options.addArguments("disable-infobars");
-    options.addArguments("--disable-extensions");
 
     return new ChromeDriver(options);
   }

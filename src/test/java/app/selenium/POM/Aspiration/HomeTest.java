@@ -39,7 +39,10 @@ public class HomeTest {
     assertDoesNotThrow(() -> {
       WebDriver driver = getChromeDriver();
       driver.get(PageUrl);
-      for (By element : Elements) { WebElement Cleared = driver.findElement(element);}});
+      for (By element : Elements) { WebElement Cleared = driver.findElement(element);      }
+    driver.close();
+    driver.quit();
+    });
   }
 
   @Test
@@ -52,7 +55,10 @@ public class HomeTest {
         driver.get(PageUrl);
         WebElement Cleared = driver.findElement(element);
         Cleared.click();
-      }});
+            }
+    driver.close();
+    driver.quit();
+    });
   }
   @Test
   public void AreButtonsClickableWithActions()  {
@@ -65,7 +71,10 @@ public class HomeTest {
         WebElement Cleared = driver.findElement(element);
         Actions actions = new Actions(driver);
         actions.moveToElement(Cleared).click().build().perform();
-      }});
+            }
+    driver.close();
+    driver.quit();
+    });
   }
 
   @Test
@@ -80,7 +89,10 @@ public class HomeTest {
         String url =Cleared.getAttribute("href");
         System.out.println(url);
         driver.get(url);
-      }});
+            }
+    driver.close();
+    driver.quit();
+    });
   }
 
   @Test
@@ -114,7 +126,9 @@ public class HomeTest {
           if(Plus.isEmpty()){System.out.println("false");
               } else if (Objects.equals(Plus.get(0).getTagName(),"img")){ System.out.println(Plus.get(0).isEnabled());
               } else if(Objects.equals(Plus.get(0).getTagName(),"p")){System.out.println(Plus.get(0).getText());
-              } else{System.out.println("\" \"");}}
+              } else{System.out.println("\" \"");}      }
+    driver.close();
+    driver.quit();
     });
   }
   @Test
@@ -127,6 +141,9 @@ public class HomeTest {
         WebElement Cleared = driver.findElement(element);
         Cleared.click();
 
-      }});
+            }
+    driver.close();
+    driver.quit();
+    });
   }
 }

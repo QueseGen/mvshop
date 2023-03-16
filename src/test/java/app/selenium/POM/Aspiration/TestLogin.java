@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class AspirationTest {
+public class TestLogin {
     static private List<String> getCredentials(){
         List<String> cred = new ArrayList<>();
 

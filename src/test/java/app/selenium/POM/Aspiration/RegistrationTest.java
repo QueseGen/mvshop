@@ -27,7 +27,10 @@ public class RegistrationTest {
         assertDoesNotThrow(() -> {
             WebDriver driver = getChromeDriver();
             driver.get(PageUrl);
-            for (By element : Elements) { WebElement Cleared = driver.findElement(element);}});
+            for (By element : Elements) { WebElement Cleared = driver.findElement(element);      }
+    driver.close();
+    driver.quit();
+    });
     }
 
   @Test
@@ -37,6 +40,8 @@ public class RegistrationTest {
       driver.get(PageUrl);
         WebElement Cleared = driver.findElement(SubmitButton);
         Cleared.click();
+        driver.close();
+        driver.quit();
       });
   }
   @Test
@@ -46,6 +51,8 @@ public class RegistrationTest {
       driver.get(PageUrl);
       WebElement Cleared = driver.findElement(SubmitButton);
       Cleared.submit();
+      driver.close();
+      driver.quit();
     });
   }
   @Test
@@ -54,6 +61,9 @@ public class RegistrationTest {
         assertDoesNotThrow(() -> {
             WebDriver driver = getChromeDriver();
             driver.get(PageUrl);
-            for (By element : Elements) {WebElement Cleared = driver.findElement(element);}});
+            for (By element : Elements) {WebElement Cleared = driver.findElement(element);      }
+    driver.close();
+    driver.quit();
+    });
     }
 }

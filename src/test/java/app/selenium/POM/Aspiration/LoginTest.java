@@ -54,6 +54,8 @@ public class LoginTest {
       driver.get(PageUrl);
       WebElement Cleared = driver.findElement(LoginButton);
       Cleared.click();
+      driver.close();
+      driver.quit();
     });
   }
   @Test
@@ -72,6 +74,7 @@ public class LoginTest {
     if(driver.findElement(By.cssSelector("h3[class='ng-binding']")).isDisplayed()){
       //build Dashboard POM and logout
       driver.quit();
+      driver.close();
     }
   }
 }
